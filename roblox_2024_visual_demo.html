@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f7f8">
+<title>Roblox 2024 — Interface demonstrativa</title>
+<style>
+:root{--blue:#00a2ff;--ink:#191b1f;--muted:#6d7178;--line:#e4e5e8;--bg:#f7f7f8;--card:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+button{font:inherit;cursor:pointer}header{height:58px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 16px;position:sticky;top:0;z-index:5}
+.logo{font-weight:900;letter-spacing:-1.5px;font-size:25px;color:#111;display:flex;align-items:center;gap:6px}.logo-mark{width:23px;height:23px;background:#111;transform:rotate(15deg);display:grid;place-items:center}.logo-mark:after{content:"";width:8px;height:8px;background:#fff}
+.search{flex:1;min-width:0;border:1px solid #d6d7db;background:#f5f5f6;border-radius:8px;padding:10px 12px;color:#666}
+.avatar-mini{width:34px;height:34px;border-radius:50%;background:#d7edff;display:grid;place-items:center;font-size:20px}
+main{max-width:980px;margin:auto;padding:18px 16px 88px}.welcome{display:flex;align-items:center;justify-content:space-between;margin:5px 0 20px}.welcome h1{font-size:25px;letter-spacing:-.7px;margin:0}.sub{color:var(--muted);font-size:13px;margin-top:5px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:25px 0 12px}.section-head h2{font-size:19px;margin:0;letter-spacing:-.3px}.see{border:0;background:none;color:#34383d;font-weight:600;font-size:13px}
+.continue-card{display:flex;gap:13px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;align-items:center}.game-art{height:100px;width:126px;border-radius:8px;flex-shrink:0;display:grid;place-items:center;overflow:hidden;background:linear-gradient(140deg,#9be8ff,#6b8dff 55%,#7b4bd9);position:relative}.game-art .sun{position:absolute;width:45px;height:45px;border-radius:50%;background:#ffe69a;top:12px;right:15px}.block-person{position:relative;width:35px;height:52px;z-index:1;filter:drop-shadow(2px 3px 0 #0002)}.head{width:25px;height:24px;background:#ffcc8b;border:2px solid #333;position:absolute;top:0;left:5px;border-radius:3px}.torso{position:absolute;top:24px;left:3px;width:29px;height:20px;background:#1d9b63;border:2px solid #333}.leg{position:absolute;top:42px;width:12px;height:13px;background:#334b9c;border:2px solid #333}.leg.l{left:4px}.leg.r{right:4px}
+.continue-info{min-width:0;flex:1}.game-title{font-weight:750;font-size:15px;margin-bottom:5px}.game-meta{font-size:12px;color:var(--muted);margin-bottom:10px}.play{background:#16a34a;color:#fff;border:0;border-radius:7px;padding:8px 15px;font-weight:700;font-size:13px}
+.games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.game{min-width:0}.thumb{width:100%;aspect-ratio:1.18;border-radius:10px;display:grid;place-items:center;position:relative;overflow:hidden;border:1px solid #0000000a}.thumb:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,#0001)}.emoji{font-size:42px;filter:drop-shadow(0 3px 2px #0002)}.g1{background:linear-gradient(135deg,#9deaff,#4f88f7)}.g2{background:linear-gradient(135deg,#ffd4e7,#ff7b9b)}.g3{background:linear-gradient(135deg,#b9f5b0,#2ba96b)}.g4{background:linear-gradient(135deg,#ffe99b,#f39d43)}.g5{background:linear-gradient(135deg,#d9c7ff,#8c66db)}.g6{background:linear-gradient(135deg,#a8f0ed,#258ca2)}.game-name{font-size:13px;font-weight:700;line-height:1.25;margin-top:7px;overflow-wrap:anywhere}.playing{font-size:11px;color:var(--muted);margin-top:4px}
+.tabs{position:fixed;z-index:10;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 6px max(8px,env(safe-area-inset-bottom))}.tab{border:0;background:transparent;color:#777;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;min-width:52px}.tab .ico{font-size:21px;line-height:23px}.tab.active{color:#111;font-weight:750}
+.panel{display:none}.panel.active{display:block}.profile-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px;text-align:center}.big-avatar{margin:0 auto 14px;width:100px;height:100px;border-radius:50%;background:#d7edff;display:grid;place-items:center;font-size:55px}.profile-card h2{margin:0 0 5px}.profile-card p{color:var(--muted);margin:0 0 16px}.secondary{border:1px solid #cfd2d7;background:#fff;border-radius:8px;padding:9px 14px;font-weight:650}
+.empty-note{font-size:12px;color:var(--muted);margin-top:15px;text-align:center}
+@media(min-width:650px){.games{grid-template-columns:repeat(4,minmax(0,1fr))}.game-art{width:170px;height:112px}.welcome h1{font-size:29px}}
+@media(max-width:370px){main{padding-left:11px;padding-right:11px}.games{gap:8px}.game-name{font-size:12px}.logo{font-size:22px}.search{padding:9px 8px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><span class="logo-mark"></span><span>ROBLOX</span></div>
+  <input class="search" id="search" aria-label="Pesquisar jogos" placeholder="Pesquisar">
+  <div class="avatar-mini" aria-label="Perfil">🙂</div>
+</header>
+<main>
+  <section class="panel active" id="home">
+    <div class="welcome"><div><h1>Início</h1><div class="sub">Bem-vindo de volta, Jogador!</div></div></div>
+    <div class="section-head"><h2>Continuar</h2><button class="see" data-go="discover">Ver tudo ›</button></div>
+    <div class="continue-card">
+      <div class="game-art"><div class="sun"></div><div class="block-person"><div class="head"></div><div class="torso"></div><div class="leg l"></div><div class="leg r"></div></div></div>
+      <div class="continue-info"><div class="game-title">Experiência Clássica</div><div class="game-meta">Aventura • Simulação visual</div><button class="play" onclick="toast('Esta é uma demonstração visual — não conecta aos servidores do Roblox.')">▶ Jogar</button></div>
+    </div>
+    <div class="section-head"><h2>Recomendados para você</h2><button class="see" data-go="discover">Ver tudo ›</button></div>
+    <div class="games" id="homeGames"></div>
+  </section>
+  <section class="panel" id="discover">
+    <div class="welcome"><div><h1>Descobrir</h1><div class="sub">Explore experiências demonstrativas</div></div></div>
+    <div class="games" id="allGames"></div>
+    <div class="empty-note">Jogos e números ilustrativos; não são listagens oficiais.</div>
+  </section>
+  <section class="panel" id="avatar">
+    <div class="welcome"><div><h1>Avatar</h1><div class="sub">Seu personagem</div></div></div>
+    <div class="profile-card"><div class="big-avatar">🧑🏻</div><h2>Jogador</h2><p>Avatar demonstrativo</p><button class="secondary" onclick="toast('Editor de avatar demonstrativo.')">Personalizar</button></div>
+  </section>
+  <section class="panel" id="chat">
+    <div class="welcome"><div><h1>Chat</h1><div class="sub">Mensagens demonstrativas</div></div></div>
+    <div class="profile-card"><div class="big-avatar">💬</div><h2>Nenhuma conversa</h2><p>Esta página não se conecta ao chat oficial.</p></div>
+  </section>
+  <section class="panel" id="more">
+    <div class="welcome"><div><h1>Mais</h1><div class="sub">Opções</div></div></div>
+    <div class="profile-card"><div class="big-avatar">⚙️</div><h2>Configurações</h2><p>Interface inspirada no aplicativo de 2024.</p><button class="secondary" onclick="toast('Esta é uma demonstração independente.')">Sobre este projeto</button></div>
+  </section>
+</main>
+<nav class="tabs" aria-label="Navegação principal">
+  <button class="tab active" data-tab="home"><span class="ico">⌂</span>Início</button>
+  <button class="tab" data-tab="discover"><span class="ico">◈</span>Descobrir</button>
+  <button class="tab" data-tab="avatar"><span class="ico">☻</span>Avatar</button>
+  <button class="tab" data-tab="chat"><span class="ico">▢</span>Chat</button>
+  <button class="tab" data-tab="more"><span class="ico">•••</span>Mais</button>
+</nav>
+<script>
+const games=[
+ {name:"Adote um Amigo",meta:"Aventura",emoji:"🐾",cls:"g1",players:"12,4 mil"},
+ {name:"Cidade dos Sonhos",meta:"Roleplay",emoji:"🏙️",cls:"g2",players:"8,2 mil"},
+ {name:"Obby Colorido",meta:"Obby",emoji:"🌈",cls:"g3",players:"5,7 mil"},
+ {name:"Sobrevivência na Ilha",meta:"Aventura",emoji:"🏝️",cls:"g4",players:"3,1 mil"},
+ {name:"Mundo de Blocos",meta:"Construção",emoji:"🧱",cls:"g5",players:"2,8 mil"},
+ {name:"Corrida Radical",meta:"Corrida",emoji:"🏎️",cls:"g6",players:"1,9 mil"}
+];
+function card(g){return `<article class="game" data-search="${g.name.toLowerCase()} ${g.meta.toLowerCase()}"><div class="thumb ${g.cls}"><span class="emoji">${g.emoji}</span></div><div class="game-name">${g.name}</div><div class="playing">👥 ${g.players} jogando*</div></article>`}
+document.getElementById("homeGames").innerHTML=games.slice(0,3).map(card).join("");
+document.getElementById("allGames").innerHTML=games.map(card).join("");
+function toast(msg){let t=document.getElementById("toast");if(!t){t=document.createElement("div");t.id="toast";t.style.cssText="position:fixed;left:16px;right:16px;bottom:78px;background:#222;color:white;padding:13px 16px;border-radius:10px;z-index:30;font-size:13px;box-shadow:0 4px 20px #0003";document.body.appendChild(t)}t.textContent=msg;t.style.display="block";clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display="none",2800)}
+function go(id){document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.tab)));
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
+document.getElementById("search").addEventListener("input",e=>{go("discover");const q=e.target.value.trim().toLowerCase();document.querySelectorAll("#allGames .game").forEach(c=>c.style.display=c.dataset.search.includes(q)?"":"none")});
+</script>
+</body>
+</html>
